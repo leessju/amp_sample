@@ -19,6 +19,27 @@ var formidable = require('formidable');
 
 var app = express();
 
+var jsonTest = {
+    items: [
+        {
+            title: "AMP YouTube Channel",
+            url: "https://www.youtube.com/channel/UCXPBsjgKKG2HqsKBhWA4uQw"
+        },
+        {
+            title: "AMPproject.org",
+            url: "https://www.ampproject.org/"
+        },
+        {
+            title: "AMP By Example",
+            url: "https://ampbyexample.com/"
+        },
+        {
+            title: "AMP Start",
+            url: "https://ampstart.com/"
+        }
+    ]
+};
+
 var skuToSizeAndPrice = {
   "1001": {
     "sizes": {
@@ -79,7 +100,13 @@ app.get('/shirts/sizesAndPrices', function(req, res) {
   var sku = req.query.sku;
   var response = {};
   response[sku] = skuToSizeAndPrice[sku];
-  setTimeout(() => res.json(response), 1000); // Simulate network delay.
+  setTimeout(() => res.json(response), 0); // Simulate network delay.
+});
+
+app.get('/test', function(req, res) {
+    var response = {};
+    response = jsonTest;
+    setTimeout(() => res.json(response), 0); // Simulate network delay.
 });
 
 app.post('/shirts/addToCart', function(req, res) {
@@ -89,11 +116,16 @@ app.post('/shirts/addToCart', function(req, res) {
       'http://localhost:3000');
 
   var form = new formidable.IncomingForm();
+
   form.parse(req, function(err, fields) {
+      console.info(JSON.stringify(fields));
+
     if (fields.color && fields.size && fields.quantity) {
       res.status(200).json(fields);
+        console.info('200');
     } else {
       res.status(400).json({error: 'Please select a size.'});
+        console.info('400');
     }
   });
 });
