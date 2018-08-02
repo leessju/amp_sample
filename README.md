@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Codelab: Advanced interactivity in AMP
 
 A codelab for learning how to use data binding and expressions to build rich interactive AMP pages.
@@ -16,3 +17,7 @@ https://ampbyexample.com/components/amp-access/
 https://www.ampproject.org/ko/docs/reference/components/amp-access
 http://localhost:8002/amp-access/sample/server/0
 
+=======
+# amp_sample
+This is the basic AMP sample.
+>>>>>>> 2906977638626b27c46bb36410bd22169d9210d1
